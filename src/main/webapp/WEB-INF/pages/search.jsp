@@ -2,18 +2,13 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
     <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
     <title>BOOK</title>
 
     <style type="text/css">
-        .tg {
-            border-collapse: collapse;
-            border-spacing: 0;
-            border-color: #ccc;
-        }
 
         .tg td {
             font-family: Arial, sans-serif;
@@ -42,16 +37,14 @@
             background-color: #f0f0f0;
         }
 
-        .tg .tg-4eph {
-            background-color: #f9f9f9
-        }
     </style>
 </head>
 
 <body class="panel-body">
 <a href="<c:url value="/books"/>">BACK</a>
 <h1 class="text-center">Books Search Result</h1>
-<c:if test="${!empty listBooks}">
+<c:choose>
+<c:when test="${!empty listBooks}">
     <table class="table table-striped table-bordered table-fesponsive">
         <tr class="text-center">
             <th class="bg-info" width="120">Title</th>
@@ -84,9 +77,10 @@
             </tr>
         </c:forEach>
     </table>
-</c:if>
-<c:if test="${empty listBooks}">
+</c:when>
+<c:otherwise>
     <h2 class="text-center">No books found matching your request.</h2>
-</c:if>
+</c:otherwise>
+</c:choose>
 </body>
 </html>

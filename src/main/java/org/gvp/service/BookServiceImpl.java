@@ -11,6 +11,8 @@ import java.util.List;
 public class BookServiceImpl implements BookService {
     private BookDao bookDao;
 
+    private static final String YEAR_SEARCH = "printYear";
+
     public void setBookDao(BookDao bookDao) {
         this.bookDao = bookDao;
     }
@@ -56,7 +58,7 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional
     public List<Book> searchBooks(String searchParameter, String searchText) {
-        if(searchParameter.equals("printYear")) {
+        if(searchParameter.equals(YEAR_SEARCH)) {
             return this.bookDao.searchBooks(searchParameter, Integer.parseInt(searchText));
         }
         return this.bookDao.searchBooks(searchParameter, searchText);

@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
 <%@ page session="false" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
     <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
@@ -84,17 +84,19 @@
                                 <spring:message text="Author"/>
                             </form:label>
                         </td>
-                        <c:if test="${!empty book.title}">
+                        <c:choose>
+                        <c:when test="${!empty book.title}">
                             <td>
                                 <form:input path="author" readonly="true" disabled="true"/>
                                 <form:hidden path="author"/>
                             </td>
-                        </c:if>
-                        <c:if test="${empty book.title}">
+                        </c:when>
+                        <c:otherwise>
                             <td>
                                 <form:input path="author"/>
                             </td>
-                        </c:if>
+                        </c:otherwise>
+                        </c:choose>
                     </tr>
                     <tr>
                         <td>
@@ -118,14 +120,16 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <c:if test="${!empty book.title}">
+                            <c:choose>
+                            <c:when test="${!empty book.title}">
                                 <input class="btn" type="submit"
                                        value="<spring:message text="Edit Book"/>"/>
-                            </c:if>
-                            <c:if test="${empty book.title}">
+                            </c:when>
+                            <c:otherwise>
                                 <input class="btn" type="submit"
                                        value="<spring:message text="Add Book"/>"/>
-                            </c:if>
+                            </c:otherwise>
+                            </c:choose>
                         </td>
                     </tr>
                 </table>
