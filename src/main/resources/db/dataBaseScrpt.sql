@@ -1,9 +1,9 @@
 USE test;
 
-DROP TABLE IF EXISTS book;
+DROP TABLE IF EXISTS books;
 
-CREATE TABLE book (
-	id INT(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE books (
+	id INT(10) NOT NULL AUTO_INCREMENT DEFAULT 1,
 	title VARCHAR(100) NOT NULL,
 	description VARCHAR(255) NOT NULL,
 	author VARCHAR(100) NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE book (
 
 ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-INSERT INTO book (title, description, author, isbn, printYear) VALUES 
+INSERT INTO books (title, description, author, isbn, printYear) VALUES
 	('A Brief History Of Time', 'description', 'Stephen Hawking', '9780857501004', 2015),
 	('The Picture of Dorian Gray', 'description', 'Oscar Wilde', '9781853260155', 1997),
 	('Don Quixote', 'description', 'Miguel de Cervantes', '9780099469698', 2005),
