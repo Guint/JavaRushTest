@@ -27,15 +27,10 @@ import javax.validation.constraints.*;
                         @Parameter(name = "language", value = "English")
                 })
         })
-public class Book {
+public class Book extends AbstractBaseEntity{
 
     public static final String DELETE = "Book.delete";
     public static final String GET_ALL = "Book.getAll";
-
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(name = "title")
     @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO, analyzer = @Analyzer(definition = "customAnalyzer"))

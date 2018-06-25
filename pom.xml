@@ -29,6 +29,7 @@
         <hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
         <hibernate-search.version>5.10.0.Final</hibernate-search.version>
         <spring-security.version>5.0.5.RELEASE</spring-security.version>
+        <jackson-json.version>2.9.5</jackson-json.version>
     </properties>
 
     <dependencies>
@@ -215,6 +216,19 @@
             <groupId>org.webjars.bower</groupId>
             <artifactId>noty</artifactId>
             <version>${webjars-noty.version}</version>
+        </dependency>
+
+
+        <!--JSON-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-json.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-hibernate5</artifactId>
+            <version>${jackson-json.version}</version>
         </dependency>
 
 
