@@ -19,7 +19,7 @@ import java.util.*;
 })
 
 @Entity
-@Table(name = "users" , uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx")})
+@Table(name = "users")
 public class User extends AbstractNamedEntity {
 
     public static final String DELETE = "User.delete";

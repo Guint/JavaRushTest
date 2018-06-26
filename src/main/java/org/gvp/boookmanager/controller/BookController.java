@@ -23,20 +23,20 @@ public class BookController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Book> getAll() {
-        return bookService.getALL();
+        return bookService.getALL(1);
     }
 
     @GetMapping("/{id}")
-    public Book get(@PathVariable("id") Long id) {
-        return bookService.get(id);
+    public Book get(@PathVariable("id") long id) {
+        return bookService.get(id, 1);
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public void delete(@PathVariable("id") Long id){
-        bookService.delete(id);
+    public void delete(@PathVariable("id") long id){
+        bookService.delete(id, 1);
     }
 
-    @PostMapping()
+   /* @PostMapping()
     public String update(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
@@ -44,6 +44,6 @@ public class BookController {
         }
         bookService.save(book);
         return "redirect:/books";
-    }
+    }**/
     
 }
