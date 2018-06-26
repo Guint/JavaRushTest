@@ -4,6 +4,8 @@ import org.apache.lucene.analysis.core.LowerCaseFilterFactory;
 import org.apache.lucene.analysis.snowball.SnowballPorterFilterFactory;
 import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
 import org.gvp.boookmanager.support.validation.Year;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.search.annotations.*;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Parameter;
@@ -14,8 +16,8 @@ import javax.validation.constraints.*;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = Book.DELETE, query = "DELETE FROM Book b WHERE b.id=:id"),
-        @NamedQuery(name = Book.GET_ALL, query = "SELECT b FROM Book b")
+        @NamedQuery(name = Book.DELETE, query = "DELETE FROM Book b WHERE b.id=:id AND b.user.id=:userId"),
+        @NamedQuery(name = Book.GET_ALL, query = "SELECT b FROM Book b ORDER BY b.author ASC")
 })
 @Table(name = "books")
 @Indexed
@@ -58,6 +60,14 @@ public class Book extends AbstractBaseEntity{
 
     @Column(name = "readAlready")
     private boolean readAlready;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    //@NotNull(groups = View.Persist.class)
+    private User user;
+
+    public Book() {
+    }
 
     public Long getId() {
         return id;
@@ -113,6 +123,14 @@ public class Book extends AbstractBaseEntity{
 
     public void setReadAlready(boolean readAlready) {
         this.readAlready = readAlready;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

@@ -5,13 +5,14 @@ import org.gvp.boookmanager.model.Book;
 import java.util.List;
 
 public interface BookDao {
-    Book save(Book book);
 
-    boolean delete(Long id);
+    Book save(Book book, long userId);
 
-    Book get(Long id);
+    boolean delete(long id, long userId);
 
-    List<Book> getAll();
+    Book get(long id, long userId);
+
+    List<Book> getAll(long userId);
 
     List<Book> search(String searchText);
 }

@@ -1,19 +1,20 @@
 package org.gvp.boookmanager.service;
-
 import org.gvp.boookmanager.model.Book;
 
 import java.util.List;
 
 public interface BookService {
-    Book save(Book book);
+    Book get(long id, long userId);
 
-    boolean delete(Long id);
+    void delete(long id, long userId);
 
-    Book get(Long id);
+    Book create(Book book, int userId);
 
-    List<Book> getALL();
+    Book update(Book book, int userId);
+
+    List<Book> getALL(long userId);
 
     List<Book> search(String searchText);
 
-    void makeRead(Book book);
+    void makeRead(Book book, long userId);
 }

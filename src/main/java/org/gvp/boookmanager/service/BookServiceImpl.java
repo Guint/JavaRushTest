@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 public class BookServiceImpl implements BookService {
 
 
-    private BookDao bookDao;
+    private final BookDao bookDao;
 
     @Autowired
     public BookServiceImpl(BookDao bookDao) {
@@ -21,40 +21,39 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void makeRead(Book book) {
+    public Book get(long id, long userId) {
+        return bookDao.get(id, userId);
+    }
+
+
+    @Override
+    @Transactional
+    public void delete(long id, long userId) {
+        bookDao.delete(id, userId);
+    }
+
+    @Override
+    public Book create(Book book, int userId) {
+        return bookDao.save(book, userId);
+    }
+
+    @Override
+    public Book update(Book book, int userId) {
+        return  bookDao.save(book, userId);
+    }
+
+    @Override
+    public List<Book> getALL(long userId) {
+        return bookDao.getAll(userId);
+    }
+
+    @Override
+    public void makeRead(Book book, long userId) {
         book.setReadAlready(true);
-        bookDao.save(book);
-    }
-
-    @Override
-    @Transactional
-    public Book save(Book book) {
-        book.setReadAlready(false);
-        return bookDao.save(book);
+        bookDao.save(book, userId);
     }
 
 
-    @Override
-    @Transactional
-    public boolean delete(Long id) {
-        return bookDao.delete(id);
-    }
-
-
-    @Override
-    @Transactional
-    public Book get(Long id) {
-        return bookDao.get(id);
-    }
-
-    @Override
-    @Transactional
-    public List<Book> getALL() {
-        return bookDao.getAll();
-    }
-
-
-    @Transactional
     public List<Book> search(String searchText) {
         return bookDao.search(searchText);
     }
