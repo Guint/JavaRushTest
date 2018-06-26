@@ -63,6 +63,7 @@ public class Book extends AbstractBaseEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     //@NotNull(groups = View.Persist.class)
     private User user;
 
