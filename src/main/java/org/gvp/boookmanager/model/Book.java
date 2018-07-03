@@ -1,5 +1,6 @@
 package org.gvp.boookmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.lucene.analysis.core.LowerCaseFilterFactory;
 import org.apache.lucene.analysis.snowball.SnowballPorterFilterFactory;
 import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
@@ -65,6 +66,7 @@ public class Book extends AbstractBaseEntity{
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     //@NotNull(groups = View.Persist.class)
+    @JsonIgnore
     private User user;
 
     public Book() {

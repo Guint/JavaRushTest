@@ -2,11 +2,20 @@ package org.gvp.boookmanager.service;
 
 import org.gvp.boookmanager.dao.UserDao;
 import org.gvp.boookmanager.model.User;
+import org.gvp.boookmanager.support.security.AuthorizedUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import java.util.List;
 
-public class UserServiceImpl implements UserService {
+@Service
+@Transactional(readOnly = true)
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserDao userDao;
 
@@ -15,43 +24,54 @@ public class UserServiceImpl implements UserService {
         this.userDao = userDao;
     }
 
+    @Transactional
     @Override
     public User create(User user) {
-        return null;
+        Assert.notNull(user, "user must not be null");
+        return userDao.save(user);
     }
 
+    @Transactional
     @Override
     public void delete(int id) {
-
+        userDao.delete(id);
     }
 
     @Override
     public User get(int id) {
-        return null;
+        return userDao.get(id);
     }
 
     @Override
     public User getByEmail(String email) {
-        return null;
+        return userDao.getByEmail(email);
     }
 
+    @Transactional
     @Override
     public void update(User user) {
-
+        userDao.save(user);
     }
 
     @Override
     public List<User> getAll() {
-        return null;
+        return userDao.getAll();
+    }
+
+    @Transactional
+    @Override
+    public void enable(int id, boolean enabled) {
+        User user = get(id);
+        user.setEnabled(enabled);
+        userDao.save(user);
     }
 
     @Override
-    public void enable(int id, boolean enable) {
-
-    }
-
-    @Override
-    public User getWithMeals(int id) {
-        return null;
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userDao.getByEmail(email.toLowerCase());
+        if (user == null) {
+            throw new UsernameNotFoundException("User " + email + " is not found");
+        }
+        return new AuthorizedUser(user);
     }
 }

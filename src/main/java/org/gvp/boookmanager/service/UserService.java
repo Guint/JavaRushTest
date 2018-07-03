@@ -18,7 +18,6 @@ public interface UserService {
 
     List<User> getAll();
 
-    void enable(int id, boolean enable);
+    void enable(int id, boolean enabled);
 
-    User getWithMeals(int id);
 }

@@ -3,12 +3,14 @@ package org.gvp.boookmanager.dao;
 import org.gvp.boookmanager.model.User;
 import org.hibernate.jpa.QueryHints;
 import org.springframework.dao.support.DataAccessUtils;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+@Repository
 public class UserDaoImpl implements UserDao {
 
     @PersistenceContext
