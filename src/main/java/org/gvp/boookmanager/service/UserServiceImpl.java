@@ -33,19 +33,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Transactional
     @Override
-    public void delete(int id) {
+    public void delete(long id) {
         userDao.delete(id);
     }
 
     @Override
-    public User get(int id) {
+    public User get(long id) {
         return userDao.get(id);
     }
 
-    @Override
-    public User getByEmail(String email) {
-        return userDao.getByEmail(email);
-    }
 
     @Transactional
     @Override
@@ -60,7 +56,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Transactional
     @Override
-    public void enable(int id, boolean enabled) {
+    public void enable(long id, boolean enabled) {
         User user = get(id);
         user.setEnabled(enabled);
         userDao.save(user);

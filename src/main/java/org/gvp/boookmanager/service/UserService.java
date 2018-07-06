@@ -8,16 +8,14 @@ public interface UserService {
 
     User create(User user);
 
-    void delete(int id);
+    void delete(long id);
 
-    User get(int id);
-
-    User getByEmail(String email);
+    User get(long id);
 
     void update(User user);
 
     List<User> getAll();
 
-    void enable(int id, boolean enabled);
+    void enable(long id, boolean enabled);
 
 }

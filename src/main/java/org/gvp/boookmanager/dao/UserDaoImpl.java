@@ -27,13 +27,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User get(int id) {
+    public User get(long id) {
         return em.find(User.class, id);
     }
 
     @Override
     @Transactional
-    public boolean delete(int id) {
+    public boolean delete(long id) {
         return em.createNamedQuery(User.DELETE)
                 .setParameter("id", id)
                 .executeUpdate() != 0;

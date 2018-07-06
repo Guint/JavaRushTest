@@ -8,9 +8,9 @@ public interface UserDao {
 
     User save(User user);
 
-    boolean delete(int id);
+    boolean delete(long id);
 
-    User get(int id);
+    User get(long id);
 
     User getByEmail(String email);
 

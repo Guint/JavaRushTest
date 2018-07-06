@@ -33,13 +33,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book create(Book book, int userId) {
+    public Book create(Book book, long userId) {
         return bookDao.save(book, userId);
     }
 
     @Override
     @Transactional
-    public Book update(Book book, int userId) {
+    public Book update(Book book, long userId) {
         return  bookDao.save(book, userId);
     }
 

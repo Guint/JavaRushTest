@@ -8,9 +8,9 @@ public interface BookService {
 
     void delete(long id, long userId);
 
-    Book create(Book book, int userId);
+    Book create(Book book, long userId);
 
-    Book update(Book book, int userId);
+    Book update(Book book, long userId);
 
     List<Book> getALL(long userId);
 
