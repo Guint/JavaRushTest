@@ -2,17 +2,13 @@ package org.gvp.boookmanager.support.security;
 
 
 import org.gvp.boookmanager.model.User;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-
-import static java.util.Objects.requireNonNull;
 
 public class AuthorizedUser extends org.springframework.security.core.userdetails.User {
 
     private User user;
 
     public AuthorizedUser(User user) {
-        super(user.getEmail(), user.getPassword(), user.isEnabled(), true, true, true, user.getRoles());
+        super(user.getEmail(), user.getPassword(), user.getRoles());
         this.user = user;
     }
 
@@ -20,6 +16,11 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
         return user.getId();
     }
 
+    public User getUser() {
+        return user;
+    }
 
-
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

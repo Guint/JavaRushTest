@@ -5,71 +5,34 @@
 
 <html>
 <head>
-
+    <title>Welcome</title>
+    <jsp:include page="parts/header.jsp"/>
 </head>
-<body>
-<div class="jumbotron pt-0">
-    <div class="container">
-        <c:if test="${param.error}">
-            <div class="error">${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</div>
-        </c:if>
-        <c:if test="${not empty param.message}">
-            <div class="message"><spring:message code="${param.message}"/></div>
-        </c:if>
-        <br/>
-        <p>
-            <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('user@yandex.ru', 'password')">
-                User
-            </button>
-            <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('admin@gmail.com', 'admin')">
-                Admin
-            </button>
-        </p>
-        <br/>
-        <p>Стек технологий: <a href="http://projects.spring.io/spring-security/">Spring Security</a>,
-            <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html">Spring MVC</a>,
-            <a href="http://projects.spring.io/spring-data-jpa/">Spring Data JPA</a>,
-            <a href="http://spring.io/blog/2014/05/07/preview-spring-security-test-method-security">Spring Security
-                Test</a>,
-            <a href="http://hibernate.org/orm/">Hibernate ORM</a>,
-            <a href="http://hibernate.org/validator/">Hibernate Validator</a>,
-            <a href="http://www.slf4j.org/">SLF4J</a>,
-            <a href="https://github.com/FasterXML/jackson">Json Jackson</a>,
-            <a href="http://ru.wikipedia.org/wiki/JSP">JSP</a>,
-            <a href="http://en.wikipedia.org/wiki/JavaServer_Pages_Standard_Tag_Library">JSTL</a>,
-            <a href="http://tomcat.apache.org/">Apache Tomcat</a>,
-            <a href="http://www.webjars.org/">WebJars</a>,
-            <a href="http://datatables.net/">DataTables plugin</a>,
-            <a href="http://ehcache.org">EHCACHE</a>,
-            <a href="http://www.postgresql.org/">PostgreSQL</a>,
-            <a href="http://junit.org/">JUnit</a>,
-            <a href="http://hamcrest.org/JavaHamcrest/">Hamcrest</a>,
-            <a href="http://jquery.com/">jQuery</a>,
-            <a href="http://ned.im/noty/">jQuery notification</a>,
-            <a href="http://getbootstrap.com/">Bootstrap</a>.</p>
-    </div>
-</div>
+<body class="panel-body">
 <div class="container">
-    <div class="lead">
-        &nbsp;&nbsp;&nbsp;<a href="https://github.com/JavaOPs/topjava">Java Enterprise проект</a> с
-        регистрацией/авторизацией и интерфейсом на основе ролей (USER, ADMIN).
-        Администратор может создавать/редактировать/удалять пользователей, а пользователи - управлять своим
-        профилем и данными (день, еда, калории) через UI (по AJAX) и по REST интерфейсу с базовой авторизацией.
-        Возможна фильтрация данных по датам и времени, при этом цвет записи таблицы еды зависит от того, превышает ли
-        сумма
-        калорий за день норму (редактируемый параметр в профиле пользователя).
-        Весь REST интерфейс покрывается JUnit тестами, используя Spring MVC Test и Spring Security Test.
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="jumbotron pt-20" style="margin-top: 25%">
+                <h3 class="text-center">Please sign in</h3>
+                <form name="form_login" action="${pageContext.request.contextPath}/spring_security_check" method="post">
+                    <div class="form-group">
+                        <label for="username">Login</label>
+                        <input type="text" class="form-control" id="username" name="username"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password"/>
+                        <c:if test="${param.error != null}">
+                            <div class="alert alert-danger mt-4" role="alert">
+                               Invalid username or password.
+                            </div>
+                        </c:if>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
-<script type="text/javascript">
-    <c:if test="${not empty param.username}">
-    setCredentials("${param.username}", "");
-    </c:if>
-
-    function setCredentials(username, password) {
-        $('input[name="username"]').val(username);
-        $('input[name="password"]').val(password);
-    }
-</script>
 </body>
 </html>

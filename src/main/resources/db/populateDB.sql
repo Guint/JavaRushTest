@@ -4,7 +4,7 @@ INSERT INTO users (name, email, password) VALUES
 
 INSERT INTO user_roles (role, user_id) VALUES
   ('ROLE_USER', 1),
-  ('ROLE_ADMIN', 1),
+  ('ROLE_ADMIN', 2),
   ('ROLE_USER', 2);
 
 
