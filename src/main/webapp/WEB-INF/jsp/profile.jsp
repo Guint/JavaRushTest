@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title><sec:authentication property="principal.username"/></title>
+    <title>${register ? "Registration" : "My profile"}</title>
     <%@include file="parts/header.jsp" %>
 </head>
 <body class="panel-body">
@@ -12,7 +12,7 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="jumbotron pt-20">
-                <form:form modelAttribute="user" class="form-horizontal" method="post" action="profile">
+                <form:form modelAttribute="userTo" class="form-horizontal" method="post" action="${register ? 'register' : 'profile'}">
                     <div class="form-group">
                         <form:label path="name">Name</form:label>
                         <form:input path="name" cssClass="form-control"/>

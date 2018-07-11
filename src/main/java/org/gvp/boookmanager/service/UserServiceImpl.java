@@ -3,6 +3,8 @@ package org.gvp.boookmanager.service;
 import org.gvp.boookmanager.dao.UserDao;
 import org.gvp.boookmanager.model.User;
 import org.gvp.boookmanager.support.security.AuthorizedUser;
+import org.gvp.boookmanager.to.UserTo;
+import org.gvp.boookmanager.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -46,6 +48,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Transactional
     @Override
     public void update(User user) {
+        userDao.save(user);
+    }
+
+
+    @Transactional
+    @Override
+    public void update(UserTo userTo) {
+        User user = UserUtil.updateFromTo(get(userTo.getId()), userTo);
         userDao.save(user);
     }
 

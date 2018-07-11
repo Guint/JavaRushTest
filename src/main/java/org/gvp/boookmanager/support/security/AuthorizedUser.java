@@ -2,25 +2,27 @@ package org.gvp.boookmanager.support.security;
 
 
 import org.gvp.boookmanager.model.User;
+import org.gvp.boookmanager.to.UserTo;
+import org.gvp.boookmanager.util.UserUtil;
 
 public class AuthorizedUser extends org.springframework.security.core.userdetails.User {
 
-    private User user;
+    private UserTo userTo;
 
     public AuthorizedUser(User user) {
         super(user.getEmail(), user.getPassword(), user.getRoles());
-        this.user = user;
+        this.userTo = UserUtil.asTo(user);
     }
 
     public long getId() {
-        return user.getId();
+        return userTo.getId();
     }
 
-    public User getUser() {
-        return user;
+    public UserTo getUserTo() {
+        return userTo;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserTo(UserTo userTo) {
+        this.userTo = userTo;
     }
 }
