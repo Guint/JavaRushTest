@@ -5,18 +5,17 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 public class UserTo extends BaseTo {
 
     @NotBlank
     @Size(min = 2, max = 100)
-    @SafeHtml
     private String name;
 
     @Email
     @NotBlank
     @Size(max = 100)
-    @SafeHtml
     private String email;
 
     @Size(min = 5, max = 32, message = "length must between 5 and 32 characters")

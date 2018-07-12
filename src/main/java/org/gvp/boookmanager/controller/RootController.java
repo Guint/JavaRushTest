@@ -51,7 +51,7 @@ public class RootController {
         return "profile";
     }
 
-    @RequestMapping(name = "/profile", method = RequestMethod.POST)
+    @PostMapping("/profile")
     public String updateProfile(@Valid UserTo userTo, BindingResult result, SessionStatus status, @AuthenticationPrincipal AuthorizedUser authorizedUser) {
         if (result.hasErrors()) {
             return "profile";
@@ -76,7 +76,7 @@ public class RootController {
     }
 
     @PostMapping("/register")
-    public String saveRegister(@Valid UserTo userTo, BindingResult result, SessionStatus status, Model model) {
+    public String saveRegister(@Valid UserTo userTo, BindingResult result, SessionStatus status, ModelMap model) {
         if (result.hasErrors()) {
             model.addAttribute("register", true);
             return "profile";
@@ -84,7 +84,7 @@ public class RootController {
         try {
             userService.create(UserUtil.createNewFromTo(userTo));
             status.setComplete();
-            return "redirect:login?message=app.registered&username=" + userTo.getEmail();
+            return "redirect:login?success=true";
         } catch (DataIntegrityViolationException ex) {
             result.rejectValue("email", "email already exist");
             model.addAttribute("register", true);
