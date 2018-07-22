@@ -33,6 +33,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public Book create(Book book, long userId) {
         return bookDao.save(book, userId);
     }
@@ -40,22 +41,22 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional
     public Book update(Book book, long userId) {
+        book.setReadAlready(false);
         return  bookDao.save(book, userId);
     }
 
     @Override
-    public List<Book> getALL(long userId) {
+    public List<Book> getAll(long userId) {
         return bookDao.getAll(userId);
     }
 
     @Override
-    public void makeRead(Book book, long userId) {
-        book.setReadAlready(true);
+    @Transactional
+    public void makeRead(long id, boolean readAlready, long userId) {
+        Book book = get(id, userId);
+        book.setReadAlready(readAlready);
+        System.out.println("Makeread " + book);
         bookDao.save(book, userId);
     }
 
-
-    public List<Book> search(String searchText) {
-        return bookDao.search(searchText);
-    }
 }

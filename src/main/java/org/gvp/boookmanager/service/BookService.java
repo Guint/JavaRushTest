@@ -12,9 +12,7 @@ public interface BookService {
 
     Book update(Book book, long userId);
 
-    List<Book> getALL(long userId);
+    List<Book> getAll(long userId);
 
-    List<Book> search(String searchText);
-
-    void makeRead(Book book, long userId);
+    void makeRead(long id, boolean readAlready, long userId);
 }

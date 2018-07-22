@@ -6,6 +6,7 @@ import org.gvp.boookmanager.to.UserTo;
 import org.gvp.boookmanager.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,16 +24,17 @@ import javax.validation.Valid;
 @Controller
 public class RootController {
 
-    private final UserService userService;
+    private UserService userService;
 
     @Autowired
     public RootController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping("/")
-    public String root() {
-        return "redirect:books";
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/users")
+    public String users() {
+        return "users";
     }
 
     @GetMapping("/books")

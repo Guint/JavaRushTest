@@ -18,7 +18,7 @@ import javax.validation.constraints.*;
 @Entity
 @NamedQueries({
         @NamedQuery(name = Book.DELETE, query = "DELETE FROM Book b WHERE b.id=:id AND b.user.id=:userId"),
-        @NamedQuery(name = Book.GET_ALL, query = "SELECT b FROM Book b ORDER BY b.author ASC")
+        @NamedQuery(name = Book.GET_ALL, query = "SELECT b FROM Book b WHERE b.user.id=:userId ORDER BY b.author ASC")
 })
 @Table(name = "books")
 @Indexed

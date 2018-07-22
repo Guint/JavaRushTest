@@ -2,18 +2,21 @@ package org.gvp.boookmanager.controller;
 
 import org.gvp.boookmanager.model.User;
 import org.gvp.boookmanager.service.UserService;
+import org.gvp.boookmanager.to.UserTo;
+import org.gvp.boookmanager.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(name = "/users")
+@RequestMapping(value = "/bookmanager/users")
 public class UserController {
 
-    private final UserService userService;
+    private UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
@@ -39,11 +42,11 @@ public class UserController {
     }
 
     @PostMapping
-    public void createOrUpdate(@Valid @ModelAttribute User user) {
-        if (user.getId() == null) {
-            userService.create(user);
+    public void createOrUpdate(@Valid @ModelAttribute UserTo userTo) {
+        if (userTo.getId() == null) {
+            userService.create(UserUtil.createNewFromTo(userTo));
         } else {
-            userService.update(user);
+            userService.update(userTo);
         }
     }
 

@@ -32,7 +32,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    @Transactional
     public boolean delete(long id) {
         return em.createNamedQuery(User.DELETE)
                 .setParameter("id", id)

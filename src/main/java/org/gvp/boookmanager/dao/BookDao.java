@@ -14,5 +14,4 @@ public interface BookDao {
 
     List<Book> getAll(long userId);
 
-    List<Book> search(String searchText);
 }

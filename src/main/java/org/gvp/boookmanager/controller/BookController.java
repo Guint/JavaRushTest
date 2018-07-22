@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/books")
+@RequestMapping(value = "/bookmanager/books")
 public class BookController {
 
     private BookService bookService;
@@ -24,26 +24,30 @@ public class BookController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Book> getAll(@AuthenticationPrincipal AuthorizedUser authorizedUser) {
-        return bookService.getALL(authorizedUser.getId());
+        return bookService.getAll(authorizedUser.getId());
     }
 
     @GetMapping( value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Book get(@PathVariable("id") long id, @AuthenticationPrincipal AuthorizedUser authorizedUser) {
-        return bookService.get(id, authorizedUser.getId());
+    public Book get(@PathVariable("id") long id) {
+        return bookService.get(id, AuthorizedUser.id());
     }
 
-    @DeleteMapping(value = "/delete/{id}")
-    public void delete(@PathVariable("id") long id, @AuthenticationPrincipal AuthorizedUser authorizedUser){
-        bookService.delete(id, authorizedUser.getId());
+    @DeleteMapping(value = "/{id}")
+    public void delete(@PathVariable("id") long id){
+        bookService.delete(id, AuthorizedUser.id());
     }
 
    @PostMapping()
-    public void update(@Valid @ModelAttribute Book book, @AuthenticationPrincipal AuthorizedUser authorizedUser){
+    public void update(@Valid @ModelAttribute Book book){
         if(book.getId() == null) {
-            bookService.create(book, authorizedUser.getId());
+            bookService.create(book, AuthorizedUser.id());
         } else {
-            bookService.update(book, authorizedUser.getId());
+            bookService.update(book, AuthorizedUser.id());
         }
     }
-    
+
+    @PostMapping(value = "/{id}")
+    public void makeRead(@PathVariable("id") int id, @RequestParam("readAlready") boolean readAlready) {
+        bookService.makeRead(id, readAlready, AuthorizedUser.id());
+    }
 }

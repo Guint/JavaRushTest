@@ -1,0 +1,6 @@
+tr[book-readAlready="true"] {
+    color: green;
+}
+tr[data-userEnabled="false"] {
+    opacity: 0.3;
+}

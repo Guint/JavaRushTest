@@ -10,7 +10,10 @@
         </mvc:argument-resolvers>
     </mvc:annotation-driven>
 
+
     <mvc:resources mapping="/resources/**" location="/resources/"/>
+ <!-- use WebJars so Javascript and CSS libs can be declared as Maven dependencies (Bootstrap, jQuery...) -->
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
