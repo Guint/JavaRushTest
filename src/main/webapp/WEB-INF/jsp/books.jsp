@@ -30,7 +30,7 @@
                     <th class="bg-info">Author</th>
                     <th class="bg-info">ISBN</th>
                     <th class="bg-info">PrintYear</th>
-                    <th class="bg-info">Readed</th>
+                    <th class="bg-info">Read</th>
                     <th class="bg-info"></th>
                     <th class="bg-info"></th>
                 </tr>
@@ -49,26 +49,26 @@
 
                                 <div class="form-group">
                                     <label for="title" class="col-form-label">Title</label>
-                                    <input type="text" class="form-control" id="title" name="title">
+                                    <input type="text" class="form-control" id="title" name="title" placeholder="Title">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="description" class="col-form-label">Description</label>
                                     <br>
-                                    <textarea class="text-area" name="description" id="description" rows="3" cols="62"></textarea>
+                                    <textarea class="text-area" name="description" id="description" rows="3" cols="62" placeholder="Description"></textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="author" class="col-form-label">Author</label>
-                                    <input type="text" class="form-control" id="author" name="author">
+                                    <input type="text" class="form-control" id="author" name="author" placeholder="Author">
                                 </div>
                                 <div class="form-group">
                                     <label for="isbn" class="col-form-label">ISBN</label>
-                                    <input type="text" class="form-control" id="isbn" name="isbn">
+                                    <input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN">
                                 </div>
                                 <div class="form-group">
                                     <label for="printYear" class="col-form-label">PrintYear</label>
-                                    <input type="text" class="form-control" id="printYear" name="printYear">
+                                    <input type="number" class="form-control" id="printYear" name="printYear" placeholder="PrintYear">
                                 </div>
                                 <div class="form-group">
                                     <input type="hidden" class="form-control" id="readAlready" name="readAlready">

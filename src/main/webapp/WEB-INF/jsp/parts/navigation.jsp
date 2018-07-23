@@ -16,7 +16,9 @@
                     </li>
                 </sec:authorize>
             </ul>
-               <a class="btn btn-outline-info" href="${pageContext.request.contextPath}/logout" >Выйти</a>
+            <form:form action="logout" method="post">
+                <button class="btn btn-outline-info" type="submit"><span class="fa fa-sign-out"></span>Log out</button>
+            </form:form>
         </nav>
     </div>
 </div>

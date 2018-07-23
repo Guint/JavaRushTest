@@ -19,7 +19,7 @@
                     </div>
                 </c:if>
                 <h3 class="text-center">Please log in</h3>
-                <form name="form_login" action="${pageContext.request.contextPath}/spring_security_check" method="post">
+                <form:form name="form_login" action="${pageContext.request.contextPath}/spring_security_check" method="post">
                     <div class="form-group">
                         <label for="username">Login</label>
                         <input type="text" class="form-control" id="username" name="username"/>
@@ -27,14 +27,14 @@
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password"/>
-                        <c:if test="${param.error != null}">
+                        <c:if test="${param.error}">
                             <div class="alert alert-danger mt-4" role="alert">
-                                Invalid username or password.
+                                    ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
                             </div>
                         </c:if>
                     </div>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
-                </form>
+                </form:form>
                 <a href="${pageContext.request.contextPath}/register"
                    class="badge badge-pill badge-primary">Register</a>
             </div>
