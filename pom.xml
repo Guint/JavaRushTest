@@ -15,7 +15,8 @@
         <java-version>1.8</java-version>
         <org.springframework-version>5.0.5.RELEASE</org.springframework-version>
         <org.aspectj-version>1.7.4</org.aspectj-version>
-        <org.slf4j-version>1.7.5</org.slf4j-version>
+        <logback.version>1.2.3</logback.version>
+        <slf4j.version>1.7.5</slf4j.version>
         <hibernate.version>5.3.0.Final</hibernate.version>
         <commons-dbcp2.version>2.1.1</commons-dbcp2.version>
         <javax.servlet.version>2.5</javax.servlet.version>
@@ -25,6 +26,7 @@
         <webjars-bootstrap.version>4.1.0</webjars-bootstrap.version>
         <webjars-jquery.version>3.3.1-1</webjars-jquery.version>
         <webjars-noty.version>3.1.0</webjars-noty.version>
+        <webjars-moment.version>2.22.2</webjars-moment.version>
         <webjars-datatables.version>1.10.16</webjars-datatables.version>
         <hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
         <hibernate-search.version>5.10.0.Final</hibernate-search.version>
@@ -107,60 +109,25 @@
             <version>${hibernate-validator.version}</version>
         </dependency>
 
-        <!-- Hibernate-Search -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-search-orm</artifactId>
-            <version>${hibernate-search.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.hibernate</groupId>
-                    <artifactId>hibernate-commons-annotations</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${org.slf4j-version}</version>
+            <version>${slf4j.version}</version>
+            <scope>compile</scope>
         </dependency>
+
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${org.slf4j-version}</version>
+            <artifactId>jul-to-slf4j</artifactId>
+            <version>${slf4j.version}</version>
             <scope>runtime</scope>
         </dependency>
+
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${org.slf4j-version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.15</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.mail</groupId>
-                    <artifactId>mail</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.jms</groupId>
-                    <artifactId>jms</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.sun.jdmk</groupId>
-                    <artifactId>jmxtools</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.sun.jmx</groupId>
-                    <artifactId>jmxri</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
             <scope>runtime</scope>
         </dependency>
 
@@ -188,6 +155,7 @@
             <artifactId>jquery</artifactId>
             <version>${webjars-jquery.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
@@ -214,6 +182,12 @@
             <groupId>org.webjars.bower</groupId>
             <artifactId>noty</artifactId>
             <version>${webjars-noty.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>moment</artifactId>
+            <version>${webjars-moment.version}</version>
         </dependency>
 
 

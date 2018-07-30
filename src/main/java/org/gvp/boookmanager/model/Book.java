@@ -1,15 +1,9 @@
 package org.gvp.boookmanager.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.apache.lucene.analysis.core.LowerCaseFilterFactory;
-import org.apache.lucene.analysis.snowball.SnowballPorterFilterFactory;
-import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
 import org.gvp.boookmanager.support.validation.Year;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.hibernate.search.annotations.*;
-import org.hibernate.search.annotations.Index;
-import org.hibernate.search.annotations.Parameter;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -21,22 +15,12 @@ import javax.validation.constraints.*;
         @NamedQuery(name = Book.GET_ALL, query = "SELECT b FROM Book b WHERE b.user.id=:userId ORDER BY b.author ASC")
 })
 @Table(name = "books")
-@Indexed
-@AnalyzerDef(name = "customAnalyzer",
-        tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
-        filters = {
-                @TokenFilterDef(factory = LowerCaseFilterFactory.class),
-                @TokenFilterDef(factory = SnowballPorterFilterFactory.class, params = {
-                        @Parameter(name = "language", value = "English")
-                })
-        })
 public class Book extends AbstractBaseEntity{
 
     public static final String DELETE = "Book.delete";
     public static final String GET_ALL = "Book.getAll";
 
     @Column(name = "title")
-    @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO, analyzer = @Analyzer(definition = "customAnalyzer"))
     @NotBlank(message = "Enter a title")
     private String title;
 
@@ -46,7 +30,6 @@ public class Book extends AbstractBaseEntity{
     private String description;
 
     @Column(name = "author")
-    @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     @NotBlank(message = "Enter a name of author")
     private String author;
 

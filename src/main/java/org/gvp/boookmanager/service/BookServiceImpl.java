@@ -55,7 +55,6 @@ public class BookServiceImpl implements BookService {
     public void makeRead(long id, boolean readAlready, long userId) {
         Book book = get(id, userId);
         book.setReadAlready(readAlready);
-        System.out.println("Makeread " + book);
         bookDao.save(book, userId);
     }
 
