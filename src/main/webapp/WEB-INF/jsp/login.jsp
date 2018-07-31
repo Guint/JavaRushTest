@@ -5,38 +5,39 @@
 
 <html>
 <head>
-    <title>Welcome</title>
+    <title><spring:message code="app.title"/></title>
     <jsp:include page="parts/header.jsp"/>
 </head>
 <body class="panel-body">
 <div class="container">
+    <%@include file="parts/navigation.jsp" %>
     <div class="row justify-content-center">
         <div class="col-md-4">
-            <div class="jumbotron pt-20" style="margin-top: 25%">
+            <div class="jumbotron pt-20">
                 <c:if test="${param.success}">
                     <div class="alert alert-success" role="alert">
-                        <p class="text-center">You are registered.</p>
+                        <p class="text-center"><spring:message code="app.registered"/></p>
                     </div>
                 </c:if>
-                <h3 class="text-center">Please log in</h3>
+                <h3 class="text-center"><spring:message code="app.welcome"/></h3>
                 <form:form name="form_login" action="${pageContext.request.contextPath}/spring_security_check" method="post">
                     <div class="form-group">
-                        <label for="username">Login</label>
+                        <label for="username"><spring:message code="app.login"/></label>
                         <input type="text" class="form-control" id="username" name="username"/>
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password"><spring:message code="app.password"/></label>
                         <input type="password" class="form-control" id="password" name="password"/>
-                        <c:if test="${param.error}">
+                        <c:if test="${param.error != null}">
                             <div class="alert alert-danger mt-4" role="alert">
                                     ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
                             </div>
                         </c:if>
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit"><spring:message code="app.enter"/></button>
                 </form:form>
                 <a href="${pageContext.request.contextPath}/register"
-                   class="badge badge-pill badge-primary">Register</a>
+                   class="badge badge-pill badge-primary"><spring:message code="app.register"/></a>
             </div>
         </div>
     </div>

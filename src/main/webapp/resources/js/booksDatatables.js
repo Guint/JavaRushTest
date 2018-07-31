@@ -14,7 +14,7 @@ function makeRead(chkbox, id) {
     }).done(function () {
         chkbox.closest("tr").attr("book-readAlready", readAlready);
         if(readAlready) {
-            successNoty("Readed");
+            successNoty(i18n["read"]);
         }
     }).fail(function () {
         $(chkbox).prop("checked", !readAlready);
@@ -25,9 +25,12 @@ $(function () {
     datatableApi = $("#bookTable").DataTable({
         "ajax": {
             "url": ajaxUrl,
-            "dataSrc": ""
+            "dataSrc": "",
         },
         "info": true,
+        "language": {
+            "search": i18n["common.search"]
+        },
         "columns": [
             {
                 "data": "title",

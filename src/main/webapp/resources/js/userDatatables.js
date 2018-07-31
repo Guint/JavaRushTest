@@ -13,7 +13,7 @@ function enable(chkbox, id) {
         data: "enabled=" + enabled
     }).done(function () {
         chkbox.closest("tr").attr("data-userEnabled", enabled);
-        successNoty(enabled ? "Enabled" : "Disabled");
+        successNoty(enabled ? i18n["common.enabled"] : i18n["common.disabled"]);
     }).fail(function () {
         $(chkbox).prop("checked", !enabled);
     });
@@ -27,6 +27,9 @@ $(function () {
             "dataSrc": ""
         },
         "info": true,
+        "language": {
+            "search": i18n["common.search"]
+        },
         "columns": [
             {
                 "data": "name"
@@ -56,7 +59,8 @@ $(function () {
                 "data": "registered",
                 "render": function (date, type, row) {
                     if (type === "display") {
-                        return date.toString().substring(0, 10);
+                        var momentDate = moment(date);
+                        return momentDate.format("DD-MM-YYYY");
                     }
                     return date;
                 }
