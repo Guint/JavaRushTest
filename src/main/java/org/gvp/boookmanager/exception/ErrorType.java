@@ -1,11 +1,11 @@
 package org.gvp.boookmanager.exception;
 
 public enum ErrorType {
-    APP_ERROR("Application error"),
-    DATA_NOT_FOUND("Data not found"),
-    DATA_ERROR("Data error"),
-    VALIDATION_ERROR("Validation error"),
-    WRONG_REQUEST("Wrong request");
+    APP_ERROR("error.appError"),
+    DATA_NOT_FOUND("error.dataNotFound"),
+    DATA_ERROR("error.dataError"),
+    VALIDATION_ERROR("error.validationError"),
+    WRONG_REQUEST("error.wrongRequest");
 
     private final String errorCode;
 

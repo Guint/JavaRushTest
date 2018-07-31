@@ -50,5 +50,9 @@ public abstract class AbstractBaseEntity {
         return id == null ? 0 : Long.hashCode(id);
     }
 
+    public boolean isNew() {
+        return id != null;
+    }
+
 
 }

@@ -20,6 +20,8 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
 
+import static org.gvp.boookmanager.exception.handlers.ExceptionInfoHandler.EXCEPTION_DUPLICATE_EMAIL;
+
 
 @Controller
 public class RootController {
@@ -63,7 +65,7 @@ public class RootController {
             status.setComplete();
             return "redirect:books";
         } catch (DataIntegrityViolationException ex) {
-            result.rejectValue("email", "email already exist");
+            result.rejectValue("email", EXCEPTION_DUPLICATE_EMAIL);
             return "profile";
         }
 
@@ -87,7 +89,7 @@ public class RootController {
             status.setComplete();
             return "redirect:login?success=true";
         } catch (DataIntegrityViolationException ex) {
-            result.rejectValue("email", "email already exist");
+            result.rejectValue("email", EXCEPTION_DUPLICATE_EMAIL);
             model.addAttribute("register", true);
             return "profile";
         }

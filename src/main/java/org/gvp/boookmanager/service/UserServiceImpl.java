@@ -5,6 +5,7 @@ import org.gvp.boookmanager.model.User;
 import org.gvp.boookmanager.support.security.AuthorizedUser;
 import org.gvp.boookmanager.to.UserTo;
 import org.gvp.boookmanager.util.UserUtil;
+import org.gvp.boookmanager.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.List;
+
+import static org.gvp.boookmanager.util.ValidationUtil.*;
 
 @Service
 @Transactional(readOnly = true)
@@ -32,19 +35,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Transactional
     @Override
     public User create(User user) {
-        Assert.notNull(user, "user must not be null");
         return userDao.save(UserUtil.prepareToSave(user, passwordEncoder));
     }
 
     @Transactional
     @Override
     public void delete(long id) {
-        userDao.delete(id);
+        checkNotFoundWithId(userDao.delete(id), id);
     }
 
     @Override
     public User get(long id) {
-        return userDao.get(id);
+        return checkNotFoundWithId(userDao.get(id), id);
     }
 
 
